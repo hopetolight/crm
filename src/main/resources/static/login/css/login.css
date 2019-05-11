@@ -1,0 +1,45 @@
+/** 页面主体背景 */
+.body-bg{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #3C3C3C url("../image/login-background.JPG") no-repeat fixed center -8%;
+}
+
+/** 页头 */
+.body-bg > .top-header {
+    height: 8%;
+    width: 100%;
+    background: #3C3C3C;
+}
+/** 头部大标题 */
+.top-header  h1 {
+    margin-left: 1%;
+    font: normal bold 50px 楷体;
+    color: #eeeeee;
+    margin-top: 0.5%;
+}
+/** 头部小标题 */
+.top-header > h1 > small {
+    margin: 0 1%;
+    font: normal bold 20px 楷体;
+    color: #eeeeee;
+}
+
+/** 主题内容 */
+.body-bg .man-body {
+    width: 100%;
+    height: 92%;
+
+}
+
+.man-body .login-form {
+    margin-top: 10%;
+    background: rgba(3, 13, 13, 0.65);
+    height: 63%;
+    border: 1px solid #d5d5d5;
+}
+
+.login-form h1 {
+    color: #eeeeee;
+}
