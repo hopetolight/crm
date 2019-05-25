@@ -18,16 +18,16 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="chenbo.work.crm.entity.user" targetProject=".">
+        <javaModelGenerator targetPackage="chenbo.work.crm.dao.user.entity.user" targetProject=".">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="chenbo.work.crm.mapper.user" targetProject=".">
+        <sqlMapGenerator targetPackage="chenbo.work.crm.dao.user" targetProject=".">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator targetPackage="chenbo.work.crm.mapper.user" type="XMLMAPPER" targetProject=".">
+        <javaClientGenerator targetPackage="chenbo.work.crm.dao.user" type="XMLMAPPER" targetProject=".">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <table schema="crm" tableName="tbl_user_role_relation" domainObjectName="UserRoleRelation" enableCountByExample="false"

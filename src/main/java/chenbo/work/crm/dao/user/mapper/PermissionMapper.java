@@ -1,6 +1,6 @@
-package chenbo.work.crm.mapper.user;
+package chenbo.work.crm.dao.user.mapper;
 
-import chenbo.work.crm.entity.user.Permission;
+import chenbo.work.crm.dao.user.entity.Permission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;

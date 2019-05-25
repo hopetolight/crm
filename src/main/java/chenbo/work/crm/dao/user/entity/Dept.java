@@ -1,4 +1,4 @@
-package chenbo.work.crm.entity.user;
+package chenbo.work.crm.dao.user.entity;
 
 import java.util.Date;
 
