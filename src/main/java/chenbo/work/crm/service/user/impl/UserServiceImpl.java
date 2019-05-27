@@ -34,4 +34,17 @@ public class UserServiceImpl implements UserService {
         userQueryWrapper.setEntity(user);
         return  userMapper.selectOne(userQueryWrapper);
     }
+
+    /**
+     * 根据用户名查找用户
+     * @param username
+     * @author; ChenBo
+     * @datetime: 2019/5/27
+     */
+    @Override
+    public User queryOneByName(String username) {
+        QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
+        userQueryWrapper.lambda().eq(User::getUsername,username);
+        return userMapper.selectOne(userQueryWrapper);
+    }
 }
