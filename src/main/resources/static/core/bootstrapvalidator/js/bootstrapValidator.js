@@ -3585,7 +3585,7 @@
             //   first and last IP address of each class is considered invalid
             //   (since they are broadcast/network addresses)
             //
-            // - Added exclusion of private, reserved and/or local networks ranges
+            // - Added exclusion of private, reserved and/or locale networks ranges
             //
             // Compressed one-line versions:
             //
@@ -3604,7 +3604,7 @@
                 "(?:\\S+(?::\\S*)?@)?" +
                 "(?:" +
                 // IP address exclusion
-                // private & local networks
+                // private & locale networks
                 "(?!10(?:\\.\\d{1,3}){3})" +
                 "(?!127(?:\\.\\d{1,3}){3})" +
                 "(?!169\\.254(?:\\.\\d{1,3}){2})" +

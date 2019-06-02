@@ -1,8 +1,8 @@
 package chenbo.work.crm.service.user.impl;
 
-import chenbo.work.crm.dao.user.entity.RolePermissionRelation;
-import chenbo.work.crm.dao.user.mapper.PermissionMapper;
-import chenbo.work.crm.dao.user.mapper.RolePermissionRelationMapper;
+import chenbo.work.crm.dao.settings.user.entity.RolePermissionRelation;
+import chenbo.work.crm.dao.settings.user.mapper.PermissionMapper;
+import chenbo.work.crm.dao.settings.user.mapper.RolePermissionRelationMapper;
 import chenbo.work.crm.service.user.PermissionService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
@@ -32,7 +32,7 @@ public class PermissionServiceImpl implements PermissionService {
      */
     @Override
     public List<String> queryPermissionsIdsByRoleIds(Set<String> roleIds) {
-        if (roleIds.isEmpty()) return null;
+        if (roleIds.isEmpty()) return new ArrayList<>();
         ArrayList<String> permissionIds = new ArrayList<>();
         roleIds.forEach(roleId ->{
             QueryWrapper<RolePermissionRelation> rolePermissionRelationQueryWrapper = new QueryWrapper<>();
@@ -40,7 +40,7 @@ public class PermissionServiceImpl implements PermissionService {
             List<RolePermissionRelation> rolePermissionRelationList = rolePermissionRelationMapper.selectList(rolePermissionRelationQueryWrapper);
             if(!rolePermissionRelationList.isEmpty()){
                 permissionIds.addAll( rolePermissionRelationList.stream()
-                        .map(rolePermissionRelation -> String.valueOf(permissionMapper.selectByPrimaryKey(rolePermissionRelation.getPermissionid())))
+                        .map(rolePermissionRelation -> permissionMapper.selectByPrimaryKey(rolePermissionRelation.getPermissionid()).getCode())
                         .collect(Collectors.toList()));
             }
         });

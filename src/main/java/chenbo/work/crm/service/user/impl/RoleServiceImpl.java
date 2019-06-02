@@ -1,9 +1,9 @@
 package chenbo.work.crm.service.user.impl;
 
-import chenbo.work.crm.dao.user.entity.Role;
-import chenbo.work.crm.dao.user.entity.UserRoleRelation;
-import chenbo.work.crm.dao.user.mapper.RoleMapper;
-import chenbo.work.crm.dao.user.mapper.UserRoleRelationMapper;
+import chenbo.work.crm.dao.settings.user.entity.Role;
+import chenbo.work.crm.dao.settings.user.entity.UserRoleRelation;
+import chenbo.work.crm.dao.settings.user.mapper.RoleMapper;
+import chenbo.work.crm.dao.settings.user.mapper.UserRoleRelationMapper;
 import chenbo.work.crm.service.user.RoleService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;

@@ -1,6 +1,6 @@
 package chenbo.work.crm.service.user;
 
-import chenbo.work.crm.dao.user.entity.User;
+import chenbo.work.crm.dao.settings.user.entity.User;
 
 public interface UserService {
 

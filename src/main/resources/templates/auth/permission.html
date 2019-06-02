@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:replace="common/head :: common-head"/>
+    <th:block th:replace="common/head :: easyui-head"/>
+    <link rel="stylesheet" th:href="@{/static/auth/css/permission.css}">
+    <script type="text/javascript" th:src="@{/static/auth/js/permission.js}"></script>
+</head>
+<body>
+<button class="btn btn-primary" id="addtree">添加</button>
+<table id="tt" class="table table-bordered table-hover"></table>
+</div>
+</body>
+</html>

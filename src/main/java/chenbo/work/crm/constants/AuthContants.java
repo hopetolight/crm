@@ -9,7 +9,7 @@ package chenbo.work.crm.constants;
 public interface AuthContants {
 
    /**  HttpHandler name*/
-    String AUTHORIZATION = "Authorization";
+    String AUTHORIZATION = "authorization";
     /**  */
     String REFERENCED_SESSION_ID_SOURCE = "Stateless request";
 }

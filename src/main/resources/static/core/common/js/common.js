@@ -1,3 +1,7 @@
+
+
+var common = {};
+
 /**
 * 动态获取根目录路径
 * @author; ChenBo
@@ -14,7 +18,6 @@
 * @datetime: 2019/5/10:22:50
 */
 $.fn.extend({
-
     /**
     * 获取form表单提交的数据对象
     * @author; ChenBo
@@ -57,4 +60,5 @@ toastr.options = {
     showMethod: "fadeIn",
     hideMethod: "fadeOut"
 };
+
 

@@ -1,8 +1,7 @@
 package chenbo.work.crm.web.auth.controller;
 
-import chenbo.work.crm.dao.user.entity.User;
+import chenbo.work.crm.dao.settings.user.entity.User;
 import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.JSONPObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -51,14 +50,16 @@ public class AuthController {
     * @datetime: 2019/5/27
     */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(User user){
+    public @ResponseBody JSONObject login(User user){
         JSONObject jsonObject = new JSONObject();
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(),user.getPassword() );
+//        DigestUtils.md5DigestAsHex(user.getUsername().getBytes())
         try{
             subject.login(token);
             jsonObject.put("token", subject.getSession().getId());
             jsonObject.put("user",user);
+            jsonObject.put("code",200);
 
         }catch (IncorrectCredentialsException e) {
             jsonObject.put("msg", "密码错误");
@@ -69,7 +70,7 @@ public class AuthController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return jsonObject.toJSONString();
+        return jsonObject;
     }
     
     

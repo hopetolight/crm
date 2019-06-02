@@ -1,15 +1,17 @@
 package chenbo.work.crm.configuration.shiro;
 
-import chenbo.work.crm.dao.user.entity.User;
+import chenbo.work.crm.dao.settings.user.entity.User;
 import chenbo.work.crm.service.user.PermissionService;
 import chenbo.work.crm.service.user.RoleService;
 import chenbo.work.crm.service.user.UserService;
+import com.alibaba.fastjson.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -36,7 +38,8 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        User user = (User)principals.getPrimaryPrincipal();
+        User user = new User();
+        BeanUtils.copyProperties(principals.getPrimaryPrincipal(),user);
         Set<String> roleIds = roleService.queryRoleIdsByUserId(user.getId());
         authorizationInfo.addRoles(roleIds);
         List<String> permissions = permissionService.queryPermissionsIdsByRoleIds(roleIds);
@@ -52,7 +55,7 @@ public class ShiroRealm extends AuthorizingRealm {
         String username = (String)token.getPrincipal();
         User user = userService.queryOneByName(username);
         if (Objects.isNull(user)) return null;
-        if (StringUtils.equals(user.getLockstatus(),"1")) throw  new LockedAccountException();
+        if (StringUtils.equals(user.getLockstatus(),"0")) throw  new LockedAccountException();
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user,
                 user.getPassword(),

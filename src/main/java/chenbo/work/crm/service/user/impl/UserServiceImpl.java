@@ -1,7 +1,7 @@
 package chenbo.work.crm.service.user.impl;
 
-import chenbo.work.crm.dao.user.entity.User;
-import chenbo.work.crm.dao.user.mapper.UserMapper;
+import chenbo.work.crm.dao.settings.user.entity.User;
+import chenbo.work.crm.dao.settings.user.mapper.UserMapper;
 import chenbo.work.crm.service.user.UserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;

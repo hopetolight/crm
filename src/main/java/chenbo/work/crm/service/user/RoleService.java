@@ -1,6 +1,6 @@
 package chenbo.work.crm.service.user;
 
-import chenbo.work.crm.dao.user.entity.Role;
+import chenbo.work.crm.dao.settings.user.entity.Role;
 
 import java.util.Set;
 

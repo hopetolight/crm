@@ -1,5 +1,6 @@
 package chenbo.work.crm.configuration.shiro;
 
+import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
@@ -56,7 +57,7 @@ public class ShiroConfig {
     @Bean
     public ShiroRealm shiroRealm(){
         ShiroRealm shiroRealm = new ShiroRealm();
-        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+//        shiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return shiroRealm;
     }
 
@@ -164,6 +165,15 @@ public class ShiroConfig {
         return authorizationAttributeSourceAdvisor;
     }
 
+    /**
+    *
+    * @author; ChenBo
+    * @datetime: 2019/5/28
+    */
+    @Bean
+    public ShiroDialect shiroDialect(){
+        return new ShiroDialect();
+    }
     /**
     *
     * @author; ChenBo

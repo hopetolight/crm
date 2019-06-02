@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 
 @SpringBootConfiguration
-@MapperScan("chenbo.work.crm.dao.*.mapper")
+@MapperScan("chenbo.work.crm.dao.**.mapper")
 public class MybatisPlusConfig {
 
     /**
