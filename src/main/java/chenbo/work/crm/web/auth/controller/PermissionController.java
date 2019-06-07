@@ -1,9 +1,19 @@
 package chenbo.work.crm.web.auth.controller;
 
+import chenbo.work.crm.dao.settings.user.entity.Permission;
+import chenbo.work.crm.dao.settings.user.entity.User;
+import chenbo.work.crm.dao.settings.user.model.PermissionVO;
+import chenbo.work.crm.service.user.PermissionService;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * 权限模块
@@ -16,86 +26,39 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PermissionController {
 
 
+    @Autowired
+    private PermissionService permissionService;
+
+    /** 权限首页 */
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(){
         return "auth/permission";
     }
 
+    /**
+    * 权限数据
+    * @author; ChenBo
+    * @datetime: 2019/6/2
+    */
     @RequestMapping(value = "/queryList")
-    public @ResponseBody Object queryList(Object o){
-        String json = "[{" +
-                "\"id\":1," +
-                "\"name\":\"C\"," +
-                "\"size\":\"\"," +
-                "\"date\":\"02/19/2010\"," +
-                "\"children\":[{" +
-                "\"id\":2," +
-                "\"name\":\"Program Files\"," +
-                "\"size\":\"120 MB\"," +
-                "\"date\":\"03/20/2010\"," +
-                "\"children\":[{" +
-                "\"id\":21," +
-                "\"name\":\"Java\"," +
-                "\"size\":\"\"," +
-                "\"date\":\"01/13/2010\"," +
-                "\"state\":\"closed\"," +
-                "\"children\":[{" +
-                "\"id\":211," +
-                "\"name\":\"ava.exe\"," +
-                "\"size\":\"142 KB\"," +
-                "\"date\":\"01/13/2010\"" +
-                "},{" +
-                "\"id\":212," +
-                "\"name\":\"awt.dll\"," +
-                "\"size\":\"5 KB\"," +
-                "\"date\":\"01/13/2010\"" +
-                "}]" +
-                "},{" +
-                "\"id\":22," +
-                "\"name\":\"MySQL\"," +
-                "\"size\":\"\"," +
-                "\"date\":\"01/13/2010\"," +
-                "\"state\":\"closed\"," +
-                "\"children\":[{" +
-                "\"id\":221," +
-                "\"name\":\"my.ini\"," +
-                "\"size\":\"10 KB\"," +
-                "\"date\":\"02/26/2009\"" +
-                "},{" +
-                "\"id\":222," +
-                "\"name\":\"my-huge.ini\"," +
-                "\"size\":\"5 KB\"," +
-                "\"date\":\"02/26/2009\"" +
-                "},{" +
-                "\"id\":223," +
-                "\"name\":\"my-large.ini\"," +
-                "\"size\":\"5 KB\"," +
-                "\"date\":\"02/26/2009\"" +
-                "}]" +
-                "}]" +
-                "},{" +
-                "\"id\":3," +
-                "\"name\":\"eclipse\"," +
-                "\"size\":\"\"," +
-                "\"date\":\"01/20/2010\"," +
-                "\"children\":[{" +
-                "\"id\":31," +
-                "\"name\":\"eclipse.exe\"," +
-                "\"size\":\"56 KB\"," +
-                "\"date\":\"05/19/2009\"" +
-                "},{" +
-                "\"id\":32," +
-                "\"name\":\"eclipse.ini\"," +
-                "\"size\":\"1 KB\"," +
-                "\"date\":\"04/20/2010\"" +
-                "},{" +
-                "\"id\":33," +
-                "\"name\":\"notice.html\"," +
-                "\"size\":\"7 KB\"," +
-                "\"date\":\"03/17/2005\"" +
-                "}]" +
-                "}]" +
-                "}]";
-        return json;
+    public @ResponseBody Object queryList(){
+       List<PermissionVO> permissionVOList =  permissionService.queryList();
+       return permissionVOList;
+    }
+
+
+    @RequestMapping(value = "/addOrUpdate")
+    public @ResponseBody Object add(Permission permission){
+
+        Object principal = SecurityUtils.getSubject().getPrincipal();
+        User user = new User();
+        BeanUtils.copyProperties(principal,user);
+        permission.setTempstamp(new Date());
+        permission.setOrderid(user.getId());
+        if (permission.getPid()==null){
+            permission.setPid(0L);
+        }
+        permission.setType(1);
+        return permissionService.addPermission(permission);
     }
 }
