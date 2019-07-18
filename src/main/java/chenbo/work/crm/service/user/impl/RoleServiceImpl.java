@@ -33,11 +33,11 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Set<Role> queryRoleByUserId(Long userId) {
         QueryWrapper<UserRoleRelation> wrapper = new QueryWrapper<>();
-        wrapper.lambda().eq(UserRoleRelation::getUserid, userId);
+        wrapper.lambda().eq(UserRoleRelation::getUserId, userId);
         List<UserRoleRelation> userRoleRelations = userRoleRelationMapper.selectList(wrapper);
         if (userRoleRelations !=null){
-            return userRoleRelations.stream().map(userRoleRelation -> roleMapper.selectByPrimaryKey(userRoleRelation.getRoleid()))
-                    .collect(Collectors.toSet());
+//            return userRoleRelations.stream().map(userRoleRelation -> roleMapper.selectOne(userRoleRelation.getRoleid()))
+//                    .collect(Collectors.toSet());
         }
         return new LinkedHashSet<>();
     }
@@ -52,12 +52,12 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Set<String> queryRoleIdsByUserId(Long userId) {
         QueryWrapper<UserRoleRelation> wrapper = new QueryWrapper<>();
-        wrapper.lambda().eq(UserRoleRelation::getUserid, userId);
+        wrapper.lambda().eq(UserRoleRelation::getUserId, userId);
         List<UserRoleRelation> userRoleRelations = userRoleRelationMapper.selectList(wrapper);
         if (userRoleRelations !=null){
-            return userRoleRelations.stream()
-                    .map(userRoleRelation -> String.valueOf(roleMapper.selectByPrimaryKey(userRoleRelation.getRoleid()).getId()))
-                    .collect(Collectors.toSet());
+//            return userRoleRelations.stream()
+//                    .map(userRoleRelation -> String.valueOf(roleMapper.selectByPrimaryKey(userRoleRelation.getRoleid()).getId()))
+//                    .collect(Collectors.toSet());
         }
         return new LinkedHashSet<>();
     }

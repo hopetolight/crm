@@ -18,30 +18,30 @@
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="chenbo.work.crm.dao.settings.user.entity.user" targetProject=".">
+        <javaModelGenerator targetPackage="chenbo.work.crm.dao.settings.user.entity" targetProject=".">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="chenbo.work.crm.dao.settings.user" targetProject=".">
+        <sqlMapGenerator targetPackage="chenbo.work.crm.dao.settings.user.mapper" targetProject=".">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator targetPackage="chenbo.work.crm.dao.settings.user" type="XMLMAPPER" targetProject=".">
+        <javaClientGenerator targetPackage="chenbo.work.crm.dao.settings.user.mapper" type="XMLMAPPER" targetProject=".">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
-        <table schema="crm" tableName="tbl_user_role_relation" domainObjectName="UserRoleRelation" enableCountByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
+<!--        <table schema="crm" tableName="tbl_user_role_relation" domainObjectName="UserRoleRelation" enableCountByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
         <table schema="crm" tableName="tbl_user" enableCountByExample="false" domainObjectName="User" enableDeleteByExample="false"
                enableSelectByExample="false" enableUpdateByExample="false"/>
-        <table schema="crm" tableName="tbl_role_permission_relation"  domainObjectName="RolePermissionRelation" enableCountByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>
-        <table schema="crm" tableName="tbl_role" enableCountByExample="false" domainObjectName="Role" enableDeleteByExample="false"
-               enableSelectByExample="false" enableUpdateByExample="false"/>
-        <table schema="crm" tableName="tbl_dept" enableCountByExample="false" domainObjectName="Dept" enableDeleteByExample="false"
-               enableSelectByExample="false" enableUpdateByExample="false"/>
-        <table schema="crm" tableName="tbl_permission" enableCountByExample="false" domainObjectName="Permission" enableDeleteByExample="false"
-               enableSelectByExample="false" enableUpdateByExample="false"/>
+<!--        <table schema="crm" tableName="tbl_role_permission_relation"  domainObjectName="RolePermissionRelation" enableCountByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" enableUpdateByExample="false"/>-->
+<!--        <table schema="crm" tableName="tbl_role" enableCountByExample="false" domainObjectName="Role" enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false" enableUpdateByExample="false"/>-->
+<!--        <table schema="crm" tableName="tbl_dept" enableCountByExample="false" domainObjectName="Dept" enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false" enableUpdateByExample="false"/>-->
+<!--        <table schema="crm" tableName="tbl_permission" enableCountByExample="false" domainObjectName="Permission" enableDeleteByExample="false"-->
+<!--               enableSelectByExample="false" enableUpdateByExample="false"/>-->
 
     </context>
 </generatorConfiguration>

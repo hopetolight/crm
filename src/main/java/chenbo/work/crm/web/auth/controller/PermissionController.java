@@ -1,18 +1,13 @@
 package chenbo.work.crm.web.auth.controller;
 
-import chenbo.work.crm.dao.settings.user.entity.Permission;
-import chenbo.work.crm.dao.settings.user.entity.User;
 import chenbo.work.crm.dao.settings.user.model.PermissionVO;
 import chenbo.work.crm.service.user.PermissionService;
-import org.apache.shiro.SecurityUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -47,18 +42,5 @@ public class PermissionController {
     }
 
 
-    @RequestMapping(value = "/addOrUpdate")
-    public @ResponseBody Object add(Permission permission){
 
-        Object principal = SecurityUtils.getSubject().getPrincipal();
-        User user = new User();
-        BeanUtils.copyProperties(principal,user);
-        permission.setTempstamp(new Date());
-        permission.setOrderid(user.getId());
-        if (permission.getPid()==null){
-            permission.setPid(0L);
-        }
-        permission.setType(1);
-        return permissionService.addPermission(permission);
-    }
 }

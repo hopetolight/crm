@@ -67,7 +67,8 @@ $(function () {
                         message: "用户名长度必须在6到18位之间"
                     }
                 }
-            }
+            },
+
         },
         submitButtons: 'button[type="submit"]',
         submitHandler: function (validator, form, submitButton) {

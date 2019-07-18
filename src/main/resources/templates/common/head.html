@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <!-- 公共头部引用 -->
-
-
     <th:block th:fragment="common-head">
     <!-- bootstrap css -->
     <link rel="stylesheet" th:href="@{/static/core/bootstrap-3.3.7/css/bootstrap.min.css}"/>
@@ -17,25 +15,10 @@
     <!---->
     <script th:src="@{/static/core/toastr/js/toastr.min.js}"></script>
     <!--[if lt IE 9]>
-    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!---->
     <script type="text/javascript" th:src="@{/static/core/common/js/common.js}"></script>
-</th:block>
-
-<!-- easyUi 头部引用 -->
-<th:block th:fragment="easyui-head">
-    <script th:src="@{/static/core/jquery-easyui-1.7.0/jquery.easyui.min.js}"></script>
-    <script th:src="@{/static/core/jquery-easyui-1.7.0/locale/easyui-lang-zh_CN.js}"></script>
-    <link rel="stylesheet" th:href="@{/static/core/jquery-easyui-1.7.0/themes/bootstrap/easyui.css}">
-    <link rel="stylesheet" th:href="@{/static/core/jquery-easyui-1.7.0/icon.css}">
-</th:block>
-
-<th:block th:fragment="layui-head">
-    <!---->
-    <link rel="stylesheet" th:href="@{/static/core/layui/css/layui.css}" />
-    <!---->
-    <script th:src="@{/static/core/layui/layui.all.js}"></script>
 </th:block>
 </html>

@@ -13,7 +13,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Parameter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +41,7 @@ public class PermissionServiceImpl implements PermissionService {
         ArrayList<String> permissionIds = new ArrayList<>();
         roleIds.forEach(roleId ->{
             QueryWrapper<RolePermissionRelation> rolePermissionRelationQueryWrapper = new QueryWrapper<>();
-            rolePermissionRelationQueryWrapper.lambda().eq(RolePermissionRelation::getRoleid,roleId);
+            rolePermissionRelationQueryWrapper.lambda().eq(RolePermissionRelation::getRoleId,roleId);
             List<RolePermissionRelation> rolePermissionRelationList = rolePermissionRelationMapper.selectList(rolePermissionRelationQueryWrapper);
             if(!rolePermissionRelationList.isEmpty()){
 //                permissionIds.addAll( rolePermissionRelationList.stream()
@@ -61,9 +60,9 @@ public class PermissionServiceImpl implements PermissionService {
     @Override
     public List<PermissionVO> queryList() {
         List<Permission> permissions = permissionMapper.selectList(null);
-        Map<Long, Permission> permissionMap = permissions.stream().collect(Collectors.toMap(Permission::getId, v -> v));
+        Map<Long, Permission> permissionMap = permissions.stream().collect(Collectors.toMap(Permission::getPermissionId, v -> v));
         Map<Long, List<Long>> childrenIdList = permissions.stream().
-                collect(Collectors.groupingBy(Permission::getPid, Collectors.mapping(Permission::getId, Collectors.toList())));
+                collect(Collectors.groupingBy(Permission::getPid, Collectors.mapping(Permission::getPermissionId, Collectors.toList())));
 
         List<PermissionVO> permissionVOList =new ArrayList<>();
         List<Long> childrens = childrenIdList.get(0L);
@@ -104,7 +103,7 @@ public class PermissionServiceImpl implements PermissionService {
     public Object addPermission(Permission permission) {
         int num;
         JSONObject jsonObject = new JSONObject();
-        if (permission.getId()!=null){
+        if (permission.getPermissionId()!=null){
             num = permissionMapper.updateById(permission);
         }else {
             num = permissionMapper.insert(permission);

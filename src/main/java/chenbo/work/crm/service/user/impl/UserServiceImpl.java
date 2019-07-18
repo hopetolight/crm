@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User queryOneByName(String username) {
         QueryWrapper<User> userQueryWrapper = new QueryWrapper<>();
-        userQueryWrapper.lambda().eq(User::getUsername,username);
+        userQueryWrapper.lambda().eq(User::getUserName,username);
         return userMapper.selectOne(userQueryWrapper);
     }
 }

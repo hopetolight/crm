@@ -1,13 +1,5 @@
 package chenbo.work.crm.web.auth.controller;
 
-import chenbo.work.crm.dao.settings.user.entity.User;
-import com.alibaba.fastjson.JSONObject;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,34 +36,7 @@ public class AuthController {
         return map;
     }
     
-    /**
-    *
-    * @author; ChenBo
-    * @datetime: 2019/5/27
-    */
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public @ResponseBody JSONObject login(User user){
-        JSONObject jsonObject = new JSONObject();
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(),user.getPassword() );
-//        DigestUtils.md5DigestAsHex(user.getUsername().getBytes())
-        try{
-            subject.login(token);
-            jsonObject.put("token", subject.getSession().getId());
-            jsonObject.put("user",user);
-            jsonObject.put("code",200);
 
-        }catch (IncorrectCredentialsException e) {
-            jsonObject.put("msg", "密码错误");
-        } catch (LockedAccountException e) {
-            jsonObject.put("msg", "登录失败，该用户已被冻结");
-        } catch (AuthenticationException e) {
-            jsonObject.put("msg", "该用户不存在");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return jsonObject;
-    }
     
     
 }
